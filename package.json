@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/comp426-2022-spring/a04-haadk1/issues"
   },
-  "homepage": "https://github.com/comp426-2022-spring/a04-haadk1#readme"
+  "homepage": "https://github.com/comp426-2022-spring/a04-haadk1#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
