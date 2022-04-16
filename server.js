@@ -1,8 +1,14 @@
 const express = require('express')
-const { stat } = require('fs')
-const { url } = require('inspector')
 const app = express()
 const arguments = require('minimist')(process.argv.slice(2))
+
+const db = require('./database.js')
+
+const morgan = require('morgan')
+const fs = require('fs')
+
+app.use(express.urlencoded({ extended: true}));
+app.use(express.json());
 arguments["port"]
 
 
@@ -11,6 +17,16 @@ var port = arguments.port || process.env.port || 5000
 const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', port))
 });
+
+if (arguments.log == 'false'){
+    console.log("not creating access.log")
+  } else{
+    const WRITESTREAM = fs.createWriteStream('access.log', { flags: 'a' })
+    // Set up the access logging middleware
+    app.use(morgan('combined', { stream: WRITESTREAM }))
+    
+  }
+  
 //help text
 const help = (`
 server.js [options]
@@ -77,6 +93,12 @@ app.get('/app/', (req, res) => {
     res.writeHead(res.statusCode, { 'Content-Type': 'text/plain' });
     res.end(res.statusCode + ' ' + res.statusMessage)
 });
+
+
+
+
+
+
 
 function coinFlip() {
     return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
