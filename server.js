@@ -34,7 +34,7 @@ if (arguments.log == 'false'){
   } else{
     const WRITESTREAM = fs.createWriteStream('access.log', { flags: 'a' })
     // Set up the access logging middleware
-    app.use(morgan('combined', { stream: loggingstream }))
+    app.use(morgan('combined', { stream: WRITESTREAM }))
     
   }
 
