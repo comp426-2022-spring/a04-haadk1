@@ -85,6 +85,7 @@ app.use( (req, res, next) => {
     next()
 })
 
+
 if (arguments.debug || arguments.d){
     app.get('/app/log/access/', (req, res, next) => {
     const stmt = db.prepare('SELECT * FROM accesslog').all()
@@ -95,7 +96,6 @@ if (arguments.debug || arguments.d){
       throw new Error('Error')
     })
 }
-
 
 
 
