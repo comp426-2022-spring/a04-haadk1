@@ -59,7 +59,7 @@ server.js [options]
 
 
 // If --help or -h, echo help text to STDOUT and exit
-if (args.help || args.h) {
+if (arguments.help || arguments.h) {
     console.log(help)
     process.exit(0)
 }
